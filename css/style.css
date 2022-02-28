@@ -1,7 +1,18 @@
 /****** Google fonts ******/
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+#body{
+    background-color: rgb(235, 232, 232);
+    font-family: 'Poppins', sans-serif;
+}
 .site-title{
     font-family: 'Anton', sans-serif;
     color: black;
+}
+span{
+    color: goldenrod;
+}
+#phone{
+    background-color: white;
 }
