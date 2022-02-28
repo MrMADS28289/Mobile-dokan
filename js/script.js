@@ -14,7 +14,7 @@ const loadPhones = phones => {
     phones.forEach(phone => {
         const div = document.createElement('div');
         div.innerHTML = `
-        <div id="phone" class="d-flex mx-auto mb-3 py-4 pe-2 rounded-3 shadow-lg" style="width: 18rem;">
+        <div class="d-flex mx-auto mb-3 py-4 pe-2 rounded-3 shadow-lg phone" style="width: 18rem;">
                 <img src="${phone.image}" class="card-img-top ms-2" alt="...">
                 <div class="card-body p-3">
                     <h5 class="card-title">${phone.brand}</h5>
@@ -38,11 +38,15 @@ const loadDetail = (details) => {
 const displayDetail = detail => {
     const div = document.createElement('div');
     div.innerHTML = `
-    <div id="phone" class="card d-flex mx-auto my-4 p-4 rounded-3 shadow-lg" style="width: 18rem;">
-            <img src="${detail.image}" class="card-img-top ms-2" alt="...">
+    <div class="d-flex flex-column w-100 mx-auto m-2 p-3 rounded-3 shadow-lg phone" style="width: 18rem;">
+            <img src="${detail.image}" class="w-25" alt="...">
             <div class="card-body p-3">
-                <h5 class="card-title">${detail.brand}</h5>
-                <p class="card-text">${detail.name}</p>
+                <h5 class="card-title">Brand: ${detail.brand} , Name: ${detail.name}</h5>
+                <p class="card-text"></p>
+                <p class="card-text">Display Size: ${detail.mainFeatures.displaySize}</p>
+                <p class="card-text">Memory: ${detail.mainFeatures.memory}</p>
+                <p class="card-text">Release Date: ${detail.releaseDate}</p>
+                <p class="card-text">Sensores: ${detail.mainFeatures.sensors}</p>
             </div>
         </div>
     `;
