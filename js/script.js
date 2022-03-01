@@ -1,6 +1,11 @@
 const searceInput = document.getElementById('searce-input');
 const parentDiv = document.getElementById('parent');
+
 // Erorr part //
+const showMoreBtn = style => {
+    document.getElementById('more-btn').style.display = style;
+}
+showMoreBtn('none');
 const loading = style => {
     document.getElementById('loading').style.display = style;
 }
@@ -23,13 +28,16 @@ const searceBtn = () => {
 
 };
 const loadPhones = phones => {
+
+    const phoneSlice = phones.slice(0, 20);
+
     if (phones.length <= 0) {
         notFoundErorr('block');
     }
     else {
         notFoundErorr('none');
     }
-    phones.forEach(phone => {
+    phoneSlice.forEach(phone => {
         const div = document.createElement('div');
         div.className = 'col col-12 col-md-4';
         div.innerHTML = `
@@ -44,6 +52,30 @@ const loadPhones = phones => {
     `;
         parentDiv.appendChild(div);
     });
+    if (phones.length > 20) {
+        showMoreBtn('block');
+        document.getElementById('more-btn').addEventListener('click', function () {
+            // const phoneSlice = phones.slice(0, 1);
+            phones.forEach(phone => {
+                const div = document.createElement('div');
+                div.className = 'col col-12 col-md-4';
+                div.innerHTML = `
+    <div class="mb-3 p-3 rounded-3 shadow-lg phone" style="width: 18rem;">
+            <img src="${phone.image}" class="card-img-top w-75" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${phone.brand}</h5>
+                <p class="card-text">${phone.phone_name}</p>
+                <button onclick="loadDetail('${phone.slug}')" class="btn btn-dark">Details</button>
+            </div>
+        </div>
+    `;
+                parentDiv.appendChild(div);
+
+                showMoreBtn('none');
+            });
+        })
+
+    }
     loading('none');
 };
 // Deatils Part //
