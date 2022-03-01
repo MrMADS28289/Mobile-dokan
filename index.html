@@ -24,26 +24,25 @@
     </header>
     <!--****** Main part ******-->
     <main>
-        <section class="row my-5">
-            <div class="col-12 col-md-6">
-                <div class="input-group w-75 d-flex mx-auto mb-3">
-                    <input id="searce-input" type="text" class="form-control" placeholder="Searce with phone name"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-light bg-dark" type="button" onclick="searceBtn()">Searce</button>
-                </div>
-                <div id="parent">
-
-                </div>
+        <section class="container my-5">
+            <div class="input-group w-75 d-flex mx-auto mb-3">
+                <input id="searce-input" type="text" class="form-control" placeholder="Searce with phone name"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-light bg-dark" type="button" onclick="searceBtn()">Searce</button>
             </div>
-            <div class="col-12 col-md-6 container">
-                <div class="position-fixed" id="detail-container">
+            <p id="not-found-erorr" class="text-center text-danger">Phone Not Found!</p>
+            <div class="row my-4" id="parent">
 
-                </div>
+            </div>
+            <div class="row" id="detail-container">
+
+            </div>
+            <!-- <div class="col-12 col-md-6 container">
                 <div class="mb-5 w-75 d-flex mx-auto flex-column bg-light p-3 text-black rounded-3 shadow-lg">
                     <img class="d-flex mx-auto mb-2" src="images/images (1).jpg" alt="">
                     <h3 class="text-center">Somethings new! ^_^</h3>
                 </div>
-            </div>
+            </div> -->
         </section>
     </main>
     <!--****** Footer part ******-->
