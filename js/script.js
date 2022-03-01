@@ -1,5 +1,6 @@
 const searceInput = document.getElementById('searce-input');
 const parentDiv = document.getElementById('parent');
+// Erorr part //
 const loading = style => {
     document.getElementById('loading').style.display = style;
 }
@@ -8,7 +9,7 @@ const notFoundErorr = style => {
     document.getElementById('not-found-erorr').style.display = style;
 };
 notFoundErorr('none');
-
+// Searce Part //
 const searceBtn = () => {
     const url = (`https://openapi.programming-hero.com/api/phones?search=${searceInput.value}`);
     fetch(url)
@@ -19,6 +20,7 @@ const searceBtn = () => {
     notFoundErorr('none');
     loading('block');
     // console.log('hosse!', url)
+
 };
 const loadPhones = phones => {
     if (phones.length <= 0) {
@@ -44,12 +46,12 @@ const loadPhones = phones => {
     });
     loading('none');
 };
+// Deatils Part //
 const detailParentDiv = document.getElementById('detail-container');
 const loadDetail = (details) => {
     fetch(`https://openapi.programming-hero.com/api/phone/${details}`)
         .then(res => res.json())
         .then(data => displayDetail(data.data))
-    // console.log(detail)
     detailParentDiv.innerHTML = '';
 };
 const displayDetail = detail => {
