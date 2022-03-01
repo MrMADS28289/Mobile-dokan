@@ -1,4 +1,9 @@
 const searceInput = document.getElementById('searce-input');
+const parentDiv = document.getElementById('parent');
+const loading = style => {
+    document.getElementById('loading').style.display = style;
+}
+loading('none');
 const notFoundErorr = style => {
     document.getElementById('not-found-erorr').style.display = style;
 };
@@ -10,10 +15,12 @@ const searceBtn = () => {
         .then(res => res.json())
         .then(data => loadPhones(data.data))
     searceInput.value = '';
+    parentDiv.innerHTML = '';
+    notFoundErorr('none');
+    loading('block');
     // console.log('hosse!', url)
 };
 const loadPhones = phones => {
-    const parentDiv = document.getElementById('parent');
     if (phones.length <= 0) {
         notFoundErorr('block');
     }
@@ -35,14 +42,15 @@ const loadPhones = phones => {
     `;
         parentDiv.appendChild(div);
     });
+    loading('none');
 };
-const parentDiv = document.getElementById('detail-container');
+const detailParentDiv = document.getElementById('detail-container');
 const loadDetail = (details) => {
     fetch(`https://openapi.programming-hero.com/api/phone/${details}`)
         .then(res => res.json())
         .then(data => displayDetail(data.data))
     // console.log(detail)
-    parentDiv.innerHTML = '';
+    detailParentDiv.innerHTML = '';
 };
 const displayDetail = detail => {
     let releaseErorr = '';
@@ -71,7 +79,7 @@ const displayDetail = detail => {
             </div>
         </div>
     `;
-    parentDiv.appendChild(div)
+    detailParentDiv.appendChild(div)
 
     // console.log(detail)
 };
