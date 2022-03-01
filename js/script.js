@@ -1,6 +1,6 @@
 const searceInput = document.getElementById('searce-input');
 const parentDiv = document.getElementById('parent');
-
+const detailParentDiv = document.getElementById('detail-container');
 // Erorr part //
 const showMoreBtn = style => {
     document.getElementById('more-btn').style.display = style;
@@ -24,15 +24,14 @@ const searceBtn = () => {
     parentDiv.innerHTML = '';
     notFoundErorr('none');
     loading('block');
+    detailParentDiv.innerHTML = '';
     // console.log('hosse!', url)
-
 };
 const loadPhones = phones => {
-
     const phoneSlice = phones.slice(0, 20);
-
     if (phones.length <= 0) {
         notFoundErorr('block');
+        showMoreBtn('none');
     }
     else {
         notFoundErorr('none');
@@ -55,31 +54,28 @@ const loadPhones = phones => {
     if (phones.length > 20) {
         showMoreBtn('block');
         document.getElementById('more-btn').addEventListener('click', function () {
-            // const phoneSlice = phones.slice(0, 1);
+            detailParentDiv.innerHTML = '';
             phones.forEach(phone => {
                 const div = document.createElement('div');
                 div.className = 'col col-12 col-md-4';
                 div.innerHTML = `
-    <div class="mb-3 p-3 rounded-3 shadow-lg phone" style="width: 18rem;">
+        <div class="mb-3 p-3 rounded-3 shadow-lg phone" style="width: 18rem;">
             <img src="${phone.image}" class="card-img-top w-75" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${phone.brand}</h5>
                 <p class="card-text">${phone.phone_name}</p>
                 <button onclick="loadDetail('${phone.slug}')" class="btn btn-dark">Details</button>
             </div>
-        </div>
+         </div>
     `;
                 parentDiv.appendChild(div);
-
                 showMoreBtn('none');
             });
         })
-
     }
     loading('none');
 };
 // Deatils Part //
-const detailParentDiv = document.getElementById('detail-container');
 const loadDetail = (details) => {
     fetch(`https://openapi.programming-hero.com/api/phone/${details}`)
         .then(res => res.json())
@@ -88,6 +84,7 @@ const loadDetail = (details) => {
 };
 const displayDetail = detail => {
     let releaseErorr = '';
+    detailParentDiv.innerHTML = '';
     if (detail.releaseDate == '') {
         releaseErorr = 'Realease date not found!';
     }
@@ -114,6 +111,5 @@ const displayDetail = detail => {
         </div>
     `;
     detailParentDiv.appendChild(div)
-
     // console.log(detail)
 };
